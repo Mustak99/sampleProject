@@ -1,0 +1,53 @@
+<app-dashboard></app-dashboard>
+<div  class="shadow p-3 mb-5 bg-white rounded" style=" margin-left: 500px;margin-right: 500px; margin-top: 50px;  padding: 15px; ">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group" style=" margin: auto; padding: 20px;">
+            <label for="first-name">First Name:</label>
+            <input class="form-control" type="text" id="first-name" formControlName="firstName">
+    
+            <label for="last-name">Last Name:</label>
+            <input class="form-control" type="text" id="last-name" formControlName="lastName">
+    
+            <div formGroupName="address">
+                <h2>Address</h2>
+    
+                <label for="street">Street:</label>
+                <input class="form-control" id="street" type="text" formControlName="street">
+    
+                <label for="city">City:</label>
+                <input class="form-control" id="city" type="text" formControlName="city">
+    
+                <label for="state">State:</label>
+                <input class="form-control" id="state" type="text" formControlName="state">
+    
+                <label for="zip">Zip Code:</label>
+                <input class="form-control" id="zip" type="text" formControlName="zip">
+            </div>
+            <div formArrayName="aliases">
+                <h2>Aliases</h2>
+                <button type="button" (click)="addAlias()">+ Add another alias</button>
+              
+                <div *ngFor="let alias of aliases.controls; let i=index">
+                  <!-- The repeated alias template -->
+                  <label for="alias-{{ i }}">Alias:</label>
+                  <input class="form-control" id="alias-{{ i }}" type="text" [formControlName]="i">
+                </div>
+              </div>
+           
+        
+        </div>
+    </form>
+    
+    <div style=" margin: auto; padding-top: 20px;">
+        <p>Complete the form to enable the button.</p>
+        <button class="btn btn-primary" type="submit"   [disabled]="!profileForm.valid" >Submit</button>
+        <button class="btn btn-info" (click)="updateProfile()">update</button>
+        <p>Form Status: {{ profileForm.status }}</p>
+        <hr>
+        <p>{{ profileForm.value | json }}</p>
+        <hr>
+    </div>
+    
+      </div>
+      
+    

@@ -1,0 +1,10 @@
+<app-dashboard></app-dashboard>
+<h2>List Items:</h2>
+    <ul>
+      <li *ngFor="let item of listItems">{{ item }}</li>
+    </ul>
+
+    <div>
+      <input type="text" [(ngModel)]="newItem" placeholder="New Item">
+      <button (click)="addItem()">Add Item</button>
+    </div>
